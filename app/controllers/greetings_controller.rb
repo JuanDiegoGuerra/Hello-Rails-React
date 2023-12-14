@@ -1,7 +1,11 @@
 class GreetingsController < ApplicationController
     def random
       greeting = Message.order("RANDOM()").first
-      render json: greeting
+      if greeting
+        render json: { greeting: greeting.greeting }
+      else
+        render json: { error: "No greetings found" }, status: :not_found
+      end
     end
   end
   
