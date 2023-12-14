@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  username: postgres
+  password: microverse
+  host: localhost
+
+development:
+  <<: *default
+  database: hello-rails-react_development
+
+test:
+  <<: *default
+  database: hello-rails-react_test
+
+production:
+  <<: *default
+  database: hello-rails-react_production
+  username: hello-rails-react
+  password: <%= ENV['HELLO_RAILS_REACT_DATABASE_PASSWORD'] %>
